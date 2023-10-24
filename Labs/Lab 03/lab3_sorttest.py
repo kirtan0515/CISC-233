@@ -1,6 +1,6 @@
 # Original codebase by Rohrbaugh 2021
-# Modifications by: yourlastname
-# Last modified: modification date
+# Modifications by: Kirtan Patel
+# Last modified: 10/05/2023
 
 import csv
 import random
@@ -8,7 +8,7 @@ import time
 from datetime import datetime
 
 # replace yourlastname with your actual last name here
-STUDENT_LASTNAME = 'yourlastname'
+STUDENT_LASTNAME = 'Patel'
 VERBOSE_OUTPUT = True
 
 # global constants controlling tests
