@@ -6,7 +6,7 @@
 # Instructor    : Professor Phil Grim
 # Description   : Perform a series of empirical tests on two different self-balancing search tree implementations,
 #                 counting the number of comparisons and rotations used when adding elements.
-# GitHub        : https://github.com/ukpatell/Python.git
+# GitHub        : https://github.com/kirtan0515/CISC-233/tree/main/Labs
 # Sources       : https://github.com/davidtweinberger/avl_tree/blob/master/tree.py
                   https://github.com/sphinxyun/algorithm-in-python/blob/b69b5641d0457f5dcfe824755d9c302340980114/dataStructure/redBlackTree.py
 """
