@@ -1,12 +1,14 @@
-# CISC 233 LAB 3 Self-Balancing Binary Search Trees
-# Author        : Umangkumar Patel
-# Date Created  : March 21, 2022
-# Date Modified : March 21, 2022
-# Instructor    : Professor Eugene
+"""
+# CISC 233 LAB 4 Self-Balancing Binary Search Trees
+# Author        : Kirtan Patel
+# Date Created  : November 10, 2023
+# Date Modified : November 19, 2023
+# Instructor    : Professor Phil Grim
 # Description   : Perform a series of empirical tests on two different self-balancing search tree implementations,
 #                 counting the number of comparisons and rotations used when adding elements.
-# GitHub        : https://github.com/ukpatell/Python.git
+# GitHub        : https://github.com/kirtan0515/CISC-233/tree/main/Labs
 # Sources       : https://github.com/sphinxyun/algorithm-in-python/blob/b69b5641d0457f5dcfe824755d9c302340980114/dataStructure/redBlackTree.py
+"""
 import random
 from functools import total_ordering
 from colorama import init, Fore, Back, Style
@@ -86,7 +88,6 @@ def inorder(root):
 
 class redBlackTree:
     def __init__(self, unique=False):
-        '''if unique is True, all node'vals are unique, else there may be equal vals'''
         self.root = None
         self.unique = unique
 
@@ -115,7 +116,6 @@ class redBlackTree:
                 nd = nd.getChild(nd.val > val)
 
     def rotate(self, prt, chd):
-        '''rotate prt with the center of chd'''
         if self.root is prt:
             self.setRoot(chd)
         else:
@@ -144,33 +144,21 @@ class redBlackTree:
             self.fixUpInsert(parent, nd)
 
     def fixUpInsert(self, parent, nd):
-        ''' adjust color and level,  there are two red nodes: the new one and its parent'''
         while not self.checkBlack(parent):
             grand = parent.parent
             isLeftPrt = grand.left is parent
             uncle = grand.getChild(not isLeftPrt)
             if not self.checkBlack(uncle):
-                # case 1:  new node's uncle is red
                 self.setBlack(grand, False)
                 self.setBlack(grand.left, True)
                 self.setBlack(grand.right, True)
                 nd = grand
                 parent = nd.parent
             else:
-                # case 2: new node's uncle is black(including nil leaf)
                 isLeftNode = parent.left is nd
                 if isLeftNode ^ isLeftPrt:
-                    # case 2.1 the new node is inserted in left-right or right-left form
-                    #         grand               grand
-                    #     parent        or            parent
-                    #          nd                   nd
-                    self.rotate(parent, nd)  # parent rotate
+                    self.rotate(parent, nd)
                     nd, parent = parent, nd
-                # case 3  (case 2.2) the new node is inserted in left-left or right-right form
-                #         grand               grand
-                #      parent        or            parent
-                #     nd                                nd
-
                 self.setBlack(grand, False)
                 self.setBlack(parent, True)
                 self.rotate(grand, parent)
