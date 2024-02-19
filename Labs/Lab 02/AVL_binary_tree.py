@@ -30,7 +30,7 @@ class Binary_Search_Tree:
     def _insert(self, root, key):
         if root is None:
             return TreeNode(key)
-        if key < root.key:
+        if key < root.data:
             root.left = self._insert(root.left, key)
         else:
             root.right = self._insert(root.right, key)
@@ -54,3 +54,11 @@ class Binary_Search_Tree:
         return left_avl and right_avl, max(left_height, right_height) + 1
 
 
+unbalanced_list = [20, 15, 10, 5, 8, 2]
+balanced_list = [10, 5, 15, 2, 8, 20]
+
+Binary_Search_Tree_unbalanced = Binary_Search_Tree(unbalanced_list)
+Binary_Search_Tree_balanced = Binary_Search_Tree(balanced_list)
+
+print("unbalanced", Binary_Search_Tree_unbalanced.is_avl())
+print("balanced", Binary_Search_Tree_balanced.is_avl())
