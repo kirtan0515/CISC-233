@@ -10,6 +10,8 @@
 # the correctness of your implementation use the following two lists:
 # a. [20, 15, 10, 5, 8, 2] unbalanced
 # b. [10, 5, 15, 2, 8, 20] balanced
+import random
+
 
 class TreeNode:
     def __init__(self, data):
@@ -37,7 +39,8 @@ class Binary_Search_Tree:
         return root
 
     def is_avl(self):
-        return self._is_avl(self.root)[0]
+        is_balanced, _ = self._is_avl(self.root)
+        return is_balanced
 
     def _is_avl(self, node):
         if node is None:
@@ -53,6 +56,20 @@ class Binary_Search_Tree:
 
         return left_avl and right_avl, max(left_height, right_height) + 1
 
+    def get_height(self, key):
+        return self._get_height(self.root, key)
+
+    def _get_height(self, node, key):
+        if node is None:
+            return 0
+
+        if key < node.data:
+            return self._get_height(node.left, key) + 1
+        elif key > node.data:
+            return self._get_height(node.right, key) + 1
+        else:
+            return 1
+
 
 unbalanced_list = [20, 15, 10, 5, 8, 2]
 balanced_list = [10, 5, 15, 2, 8, 20]
@@ -62,3 +79,8 @@ Binary_Search_Tree_balanced = Binary_Search_Tree(balanced_list)
 
 print("unbalanced", Binary_Search_Tree_unbalanced.is_avl())
 print("balanced", Binary_Search_Tree_balanced.is_avl())
+
+# Get the height of a random node from the list
+random_node = random.choice(balanced_list)
+height = Binary_Search_Tree_balanced.get_height(random_node)
+print(f"Height of node {random_node}: {height}")
